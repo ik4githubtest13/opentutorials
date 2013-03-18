@@ -95,28 +95,28 @@
                 <input type="button" value="white" onclick="document.getElementById('body').className = 'white';" />
             </div>
             <nav>
-            	<a href="./add.php">토픽추가</a>
                 <ul>
 					<?php
 						$sql = "select id,title from topic";
 						$result = mysql_query($sql);
 						while ($row = mysql_fetch_assoc($result)) {
-							echo "<li><a href = \"?id={$row['id']}\">{$row['title']}</a></li>";
+							echo "<li><a href = \"index.php?id={$row['id']}\">{$row['title']}</a></li>";
 						}
 					?>
                 </ul>
             </nav>
             <article>
-				<?php
-					if (!empty($topic)) {
-				?>
-					<h2><?=$topic['title']?></h2>
+				<form action="add_process.php" method="post">
+					<h2>
+						<label>제목</label>
+						<input type="text" name="title" />
+					</h2>
 					<div class="description">
-						<?=$topic['description']?>
+						<label>본문<label>
+						<textarea name="description"></textarea>
 					</div>
-				<?php
-					}
-				?>
+					<input type="submit" />
+				</form>
             </article>
         </div>
     </body>
